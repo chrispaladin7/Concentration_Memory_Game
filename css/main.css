@@ -5,9 +5,20 @@
 body{
     background-color: gold;
     display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
     align-items: center;
     justify-items: center;
     height: 100vh;
+}
+
+h2{
+    height: 10vh ;
+    width: 10vh;
+    background-color: black;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 5em;
+    color: aliceblue;
 }
 
 .game-board {
@@ -15,8 +26,9 @@ body{
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(4, 100px);
     gap: 5px;
-    margin-top: 20px;
-    height: 75vh;
+    height: 70vh;
     width: 100vh;
     background-color: silver;
+    align-items: center;
+    justify-items: stretch;
 }
