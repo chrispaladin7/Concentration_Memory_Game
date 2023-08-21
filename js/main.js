@@ -22,11 +22,11 @@ const CARD_BACK = "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/128
 let cards;
 let firstCard;
 let isNotFlipped;
-let wrongNumChoices=10;
+let wrongNumChoices = 10;
 
 /*----- cached elements  -----*/
 const boardEl = document.getElementById("game-board");
-const msgEl=document.querySelector('h2');
+const msgEl = document.querySelector('h2');
 
 /*----- event listeners -----*/
 // document.querySelector("main").addEventListener("click",handleChoice);
@@ -39,16 +39,28 @@ document.querySelector("main").addEventListener("click", function (evt) {
     if (firstCard) {
         if (firstCard.img === card.img) {
             firstCard.matched = card.matched = true;
-           
-        }else{
-            wrongNumChoices--;
+
+        } else {
+
+            if (wrongNumChoices <= 10 && wrongNumChoices > 0 ) {
+                --wrongNumChoices;
+                msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
+            } else {
+                for (let card of cards) {
+                    card.matched = false;
+                    msgEl.innerHTML = "Too Bad...Try Again";
+                    wrongNumChoices=0
+                }
+            }
         }
-        
-        firstCard=null;
-        
+
+        firstCard = null;
+
+        console.log(wrongNumChoices);
+
     } else {
         firstCard = card;
-    }
+    };
     render();
 });
 
@@ -62,6 +74,7 @@ function init() {
     cards = getShuffleCards();
     firstCard = null;
     isNotFlipped = false;
+    msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
     render();
 
 }
@@ -73,8 +86,8 @@ function render() {
         const src = (card.matched || card === firstCard) ? card.img : CARD_BACK;
         imgEl.src = src;
     });
-    msgEl.innerHTML=`Bad Count ${wrongNumChoices}`;
-    
+
+
 };
 
 function getShuffleCards() {
