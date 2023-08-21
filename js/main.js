@@ -29,6 +29,7 @@ const msgEl = document.querySelector('h2');
 
 /*----- event listeners -----*/
 document.querySelector("main").addEventListener("click", handleChoice);
+document.querySelector("button").addEventListener("click",replayBoard);
 
 
 
@@ -37,6 +38,7 @@ document.querySelector("main").addEventListener("click", handleChoice);
 
 init();
 handleChoice();
+replayBoard();
 
 function init() {
     cards = getShuffleCards();
@@ -44,6 +46,18 @@ function init() {
     isNotFlipped = false;
     msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
     winCondition();
+    render();
+
+}
+
+function replayBoard(){
+    wrongNumChoices = 10;
+    msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
+    cards = getShuffleCards();
+    document.querySelector("main").addEventListener("click", handleChoice);
+    firstCard = null;
+    isNotFlipped = false;
+    winner = null;
     render();
 
 }
@@ -110,5 +124,17 @@ function getShuffleCards() {
 }
 
 function winCondition() {
-
+    const unmatchedCards = cards.filter(card => !card.matched);
+    
+    if (unmatchedCards.length === 0) {
+        winner = true;
+        msgEl.innerHTML = "Congratulations, You Win!";
+        AUDIO.play();
+        boardEl.removeEventListener("click", handleChoice);
+    } else if (wrongNumChoices === 0) {
+        winner = false;
+        msgEl.innerHTML = "Game Over!";
+        AUDIO.play();
+        boardEl.removeEventListener("click", handleChoice);
+    }
 }
