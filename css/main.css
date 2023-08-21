@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html{
+    min-height: 100vh;
+}
+
 body {
     background: url("card-library/images/Concentration\ Memory.gif");
     background-position: center;
@@ -11,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-items: stretch;
-    background-color: peachpuff;
+    background-color: rgb(35, 108, 169);
 }
 
 

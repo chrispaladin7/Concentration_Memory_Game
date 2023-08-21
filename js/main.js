@@ -17,7 +17,6 @@ let cards;
 let firstCard;
 let isNotFlipped;
 let wrongNumChoices = 10;
-let winner = null;
 let matchedCards = 0;
 
 
@@ -129,16 +128,12 @@ function getShuffleCards() {
 
 function winCondition() {
 
-    if (matchedCards === 6) {
+    if (matchedCards === (cards.length/2)) {
         wrongNumChoices = 10;
         msgEl.innerHTML = "Congratulations, You Win!";
-        cards = getShuffleCards();
         document.querySelector("main").addEventListener("click", handleChoice);
-        firstCard = null;
         isNotFlipped = true;
-        winner = null;
         matchedCards = 0;
-        render();
     }
 
 
