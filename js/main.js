@@ -7,12 +7,6 @@ const CARD_LOOKUP = [
     { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/447/JC__86231__74895.1681313265.jpg?c=1", matched: false },
     { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/439/10H__11470__91447.1681313264.jpg?c=1", matched: false },
     { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/444/3C__99122__01407.1681313264.jpg?c=1", matched: false },
-    { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/440/8S__27839__42923.1681313264.jpg?c=1", matched: false },
-    // { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/960w/products/123/436/2D__57497__49826.1681470474.jpg?c=1", matched: false },
-    // { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/437/4H__83243__13942.1681313264.jpg?c=1", matched: false },
-    // { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/445/5S__90574__11272.1681313264.jpg?c=1", matched: false },
-    // { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/441/6D__92916__54479.1681313264.jpg?c=1", matched: false },
-    // { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/443/7C__93490__11317.1681313264.jpg?c=1", matched: false },
 
 ];
 
@@ -23,33 +17,57 @@ let cards;
 let firstCard;
 let isNotFlipped;
 let wrongNumChoices = 10;
+let winner = null;
+
+
+//Ignore Clicks;
 
 /*----- cached elements  -----*/
 const boardEl = document.getElementById("game-board");
 const msgEl = document.querySelector('h2');
 
+
 /*----- event listeners -----*/
-// document.querySelector("main").addEventListener("click",handleChoice);
-document.querySelector("main").addEventListener("click", function (evt) {
+document.querySelector("main").addEventListener("click", handleChoice);
+
+
+
+
+/*----- functions -----*/
+
+init();
+handleChoice();
+
+function init() {
+    cards = getShuffleCards();
+    firstCard = null;
+    isNotFlipped = false;
+    msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
+    winCondition();
+    render();
+
+}
+
+function handleChoice(evt) {
     const cardIdx = parseInt(evt.target.id);
-    //GUARD
     if (isNaN(cardIdx) || isNotFlipped) return;
     const card = cards[cardIdx];
-    // console.log(card);
     if (firstCard) {
         if (firstCard.img === card.img) {
             firstCard.matched = card.matched = true;
 
         } else {
 
-            if (wrongNumChoices <= 10 && wrongNumChoices > 0 ) {
+            if (wrongNumChoices <= 10 && wrongNumChoices > 1) {
                 --wrongNumChoices;
                 msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
             } else {
                 for (let card of cards) {
                     card.matched = false;
                     msgEl.innerHTML = "Too Bad...Try Again";
-                    wrongNumChoices=0
+                    wrongNumChoices = 0;
+                    document.querySelector("main").removeEventListener("click", handleChoice);
+
                 }
             }
         }
@@ -62,22 +80,8 @@ document.querySelector("main").addEventListener("click", function (evt) {
         firstCard = card;
     };
     render();
-});
-
-
-/*----- functions -----*/
-
-init();
-
-
-function init() {
-    cards = getShuffleCards();
-    firstCard = null;
-    isNotFlipped = false;
-    msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
-    render();
-
 }
+
 
 function render() {
     cards.forEach(function (card, idx) {
@@ -103,10 +107,8 @@ function getShuffleCards() {
         cards.push(card);
     }
     return cards;
-
-    // function handleChoice(evt){
-    //     const cardIdx=parseInt(evt.target.id);
-    //     console.log(cardIdx);
-    // }
 }
 
+function winCondition() {
+
+}
