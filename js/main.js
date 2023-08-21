@@ -21,13 +21,36 @@ const CARD_BACK = "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/128
 /*----- state variables -----*/
 let cards;
 let firstCard;
-
+let isNotFlipped;
+let wrongNumChoices=10;
 
 /*----- cached elements  -----*/
 const boardEl = document.getElementById("game-board");
-
+const msgEl=document.querySelector('h2');
 
 /*----- event listeners -----*/
+// document.querySelector("main").addEventListener("click",handleChoice);
+document.querySelector("main").addEventListener("click", function (evt) {
+    const cardIdx = parseInt(evt.target.id);
+    //GUARD
+    if (isNaN(cardIdx) || isNotFlipped) return;
+    const card = cards[cardIdx];
+    // console.log(card);
+    if (firstCard) {
+        if (firstCard.img === card.img) {
+            firstCard.matched = card.matched = true;
+           
+        }else{
+            wrongNumChoices--;
+        }
+        
+        firstCard=null;
+        
+    } else {
+        firstCard = card;
+    }
+    render();
+});
 
 
 /*----- functions -----*/
@@ -38,24 +61,27 @@ init();
 function init() {
     cards = getShuffleCards();
     firstCard = null;
+    isNotFlipped = false;
     render();
-    
+
 }
 
 function render() {
-    cards.forEach(function(card,idx){
-        
-        const imgEl=document.getElementById(`cell${idx}`);
-        const src=(card.matched|| card===firstCard) ? card.img:CARD_BACK ;
-        imgEl.src=src;
+    cards.forEach(function (card, idx) {
+
+        const imgEl = document.getElementById(`${idx}`);
+        const src = (card.matched || card === firstCard) ? card.img : CARD_BACK;
+        imgEl.src = src;
     });
+    msgEl.innerHTML=`Bad Count ${wrongNumChoices}`;
+    
 };
 
 function getShuffleCards() {
     let tempCard = [];
     let cards = [];
     for (let card of CARD_LOOKUP) {
-        tempCard.push({...card}, {...card});
+        tempCard.push({ ...card }, { ...card });
     }
 
     while (tempCard.length) {
@@ -64,5 +90,10 @@ function getShuffleCards() {
         cards.push(card);
     }
     return cards;
+
+    // function handleChoice(evt){
+    //     const cardIdx=parseInt(evt.target.id);
+    //     console.log(cardIdx);
+    // }
 }
 
