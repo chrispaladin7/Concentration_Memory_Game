@@ -18,18 +18,19 @@ let firstCard;
 let isNotFlipped;
 let wrongNumChoices = 10;
 let winner = null;
+let matchedCards = 0;
 
 
-//Ignore Clicks;
 
 /*----- cached elements  -----*/
 const boardEl = document.getElementById("game-board");
 const msgEl = document.querySelector('h2');
 
 
+
 /*----- event listeners -----*/
 document.querySelector("main").addEventListener("click", handleChoice);
-document.querySelector("button").addEventListener("click",replayBoard);
+document.querySelector("button").addEventListener("click", replayBoard);
 
 
 
@@ -45,12 +46,11 @@ function init() {
     firstCard = null;
     isNotFlipped = false;
     msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
-    winCondition();
     render();
 
 }
 
-function replayBoard(){
+function replayBoard() {
     wrongNumChoices = 10;
     msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
     cards = getShuffleCards();
@@ -58,6 +58,7 @@ function replayBoard(){
     firstCard = null;
     isNotFlipped = false;
     winner = null;
+    matchedCards = 0;
     render();
 
 }
@@ -69,12 +70,13 @@ function handleChoice(evt) {
     if (firstCard) {
         if (firstCard.img === card.img) {
             firstCard.matched = card.matched = true;
-
+            ++matchedCards;
         } else {
 
             if (wrongNumChoices <= 10 && wrongNumChoices > 1) {
                 --wrongNumChoices;
                 msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
+                // winCondition();
             } else {
                 for (let card of cards) {
                     card.matched = false;
@@ -83,15 +85,17 @@ function handleChoice(evt) {
                     document.querySelector("main").removeEventListener("click", handleChoice);
 
                 }
+                matchedCards = 0;
             }
         }
 
         firstCard = null;
 
         console.log(wrongNumChoices);
-
+        winCondition();
     } else {
         firstCard = card;
+
     };
     render();
 }
@@ -124,17 +128,20 @@ function getShuffleCards() {
 }
 
 function winCondition() {
-    const unmatchedCards = cards.filter(card => !card.matched);
-    
-    if (unmatchedCards.length === 0) {
-        winner = true;
+
+    if (matchedCards === 6) {
+        wrongNumChoices = 10;
         msgEl.innerHTML = "Congratulations, You Win!";
-        AUDIO.play();
-        boardEl.removeEventListener("click", handleChoice);
-    } else if (wrongNumChoices === 0) {
-        winner = false;
-        msgEl.innerHTML = "Game Over!";
-        AUDIO.play();
-        boardEl.removeEventListener("click", handleChoice);
+        cards = getShuffleCards();
+        document.querySelector("main").addEventListener("click", handleChoice);
+        firstCard = null;
+        isNotFlipped = true;
+        winner = null;
+        matchedCards = 0;
+        render();
     }
+
+
 }
+
+
