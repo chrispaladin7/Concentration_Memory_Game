@@ -1,5 +1,9 @@
 /*----- constants -----*/
-const AUDIO = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-simple-countdown-922.mp3');
+
+const WIN_AUDIO = new Audio('audio/mixkit-animated-small-group-applause-523.wav');
+const LOSE_AUDIO = new Audio('audio/mixkit-losing-bleeps-2026.wav');
+const CORRECT_AUDIO = new Audio('audio/mixkit-achievement-bell-600.wav');
+
 const CARD_LOOKUP = [
     { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/1280x1280/products/123/442/AS__68652__03825.1681313264.png?c=1", matched: false },
     { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/1280x1280/products/123/446/KH__01216__30660.1681470474.png?c=1", matched: false },
@@ -43,14 +47,14 @@ function init() {
     cards = getShuffleCards();
     firstCard = null;
     isNotFlipped = false;
-    msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
+    msgEl.innerHTML = `Number of left Choice : ${wrongNumChoices}`;
     render();
 
 }
 
 function replayBoard() {
     wrongNumChoices = 10;
-    msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
+    msgEl.innerHTML = `Number of left Choice : ${wrongNumChoices}`;
     cards = getShuffleCards();
     document.querySelector("main").addEventListener("click", handleChoice);
     firstCard = null;
@@ -67,20 +71,23 @@ function handleChoice(evt) {
     const card = cards[cardIdx];
     if (firstCard) {
         if (firstCard.img === card.img) {
+            CORRECT_AUDIO.pause();
             firstCard.matched = card.matched = true;
             ++matchedCards;
+            CORRECT_AUDIO.play();
         } else {
 
             if (wrongNumChoices <= 10 && wrongNumChoices > 1) {
                 --wrongNumChoices;
-                msgEl.innerHTML = `Number of left Choice ${wrongNumChoices}`;
-                // winCondition();
+                msgEl.innerHTML = `Number of left Choice : ${wrongNumChoices}`;
+    
             } else {
                 for (let card of cards) {
                     card.matched = false;
                     msgEl.innerHTML = "Too Bad...Try Again";
                     wrongNumChoices = 0;
                     document.querySelector("main").removeEventListener("click", handleChoice);
+                    LOSE_AUDIO.play();
 
                 }
                 matchedCards = 0;
@@ -133,8 +140,8 @@ function winCondition() {
         document.querySelector("main").addEventListener("click", handleChoice);
         isNotFlipped = true;
         matchedCards = 0;
+        WIN_AUDIO.play();
     }
-
 
 }
 
