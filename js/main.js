@@ -14,14 +14,15 @@ const CARD_LOOKUP = [
 
 ];
 
-const CARD_BACK = "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/1280x1280/products/118/398/purple_back__35358.1681245806.png?c=1";
+const CARD_BACK = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqRrahdiAM-GMB5DXWUS1_-Bwj6V0CGL1K0N55gPpQvkpKZPMFQsyRXpSRFmF-0EvrhGE&usqp=CAU";
 
 /*----- state variables -----*/
 let cards;
 let firstCard;
 let isNotFlipped;
 let wrongNumChoices = 10;
-let matchedCards = 0;
+let isMatched;
+
 
 
 
@@ -60,7 +61,6 @@ function replayBoard() {
     firstCard = null;
     isNotFlipped = false;
     winner = null;
-    matchedCards = 0;
     render();
 
 }
@@ -73,14 +73,13 @@ function handleChoice(evt) {
         if (firstCard.img === card.img) {
             CORRECT_AUDIO.pause();
             firstCard.matched = card.matched = true;
-            ++matchedCards;
             CORRECT_AUDIO.play();
         } else {
-
+            
             if (wrongNumChoices <= 10 && wrongNumChoices > 1) {
                 --wrongNumChoices;
                 msgEl.innerHTML = `Number of left Choice : ${wrongNumChoices}`;
-    
+                
             } else {
                 for (let card of cards) {
                     card.matched = false;
@@ -88,19 +87,18 @@ function handleChoice(evt) {
                     wrongNumChoices = 0;
                     document.querySelector("main").removeEventListener("click", handleChoice);
                     LOSE_AUDIO.play();
-
+                    
                 }
-                matchedCards = 0;
+        
             }
         }
-
+        
+        isMatched=cards.every(cardsOne=>cardsOne.matched);
         firstCard = null;
-
-        console.log(wrongNumChoices);
         winCondition();
     } else {
         firstCard = card;
-
+        
     };
     render();
 }
@@ -134,15 +132,17 @@ function getShuffleCards() {
 
 function winCondition() {
 
-    if (matchedCards === (cards.length/2)) {
+    if(isMatched===true){
         wrongNumChoices = 10;
         msgEl.innerHTML = "Congratulations, You Win!";
         document.querySelector("main").addEventListener("click", handleChoice);
         isNotFlipped = true;
-        matchedCards = 0;
         WIN_AUDIO.play();
     }
 
+  
 }
+
+
 
 

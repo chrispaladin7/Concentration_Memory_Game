@@ -1,6 +1,13 @@
 * {
     box-sizing: border-box;
+    white-space: nowrap;
 
+}
+
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 body {
@@ -45,9 +52,10 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 5vh;
+    gap: 3vh;
     height: 90vh;
     width: 100vh;
+    
 }
 
 
@@ -66,8 +74,8 @@ main {
     text-align: center;
     justify-content: center;
     align-items: flex-end;
-    color: black;
-    font-size: 5em;
+    color: goldenrod;
+    font-size: 4em;
 }
 
 
@@ -80,10 +88,11 @@ main {
 
 .game-board>img {
     display: grid;
-    height: 20vh;
+    height: 25vh;
     width: 20vh;
     align-items: center;
     justify-items: center;
+    border-radius: 5%;
 }
 
 .game-board>img:hover {
