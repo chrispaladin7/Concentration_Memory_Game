@@ -29,8 +29,7 @@ const msgEl = document.querySelector('h2');
 
 /*----- event listeners -----*/
 document.querySelector("main").addEventListener("click", handleChoice);
-document.querySelector("button").addEventListener("click", replayBoard);
-
+document.querySelector("button").addEventListener("click", replayBoard)
 
 
 
