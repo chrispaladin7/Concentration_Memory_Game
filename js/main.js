@@ -22,6 +22,8 @@ let firstCard;
 let isNotFlipped;
 let wrongNumChoices = 10;
 let isMatched;
+let isClickedTwice=null;
+
 
 
 
@@ -43,6 +45,7 @@ document.querySelector("button").addEventListener("click", replayBoard)
 init();
 handleChoice();
 replayBoard();
+checkClickedTwice();
 
 function init() {
     cards = getShuffleCards();
@@ -65,15 +68,67 @@ function replayBoard() {
 
 }
 
+// function handleChoice(evt) {
+//     const cell=evt.target.id;
+//     const cardIdx = parseInt(cell);
+//     if (isNaN(cardIdx) || isNotFlipped) return;
+  
+//     const card = cards[cardIdx];
+//     breakme: if (firstCard) {
+//         if (firstCard.img === card.img) {
+//             CORRECT_AUDIO.pause();
+//             if(isNotFlipped===false){
+//               break breakme;
+                
+//             }else{
+//                 firstCard.matched = card.matched = true;
+//                 CORRECT_AUDIO.play();
+
+//             }
+//         } else {
+            
+//             if (wrongNumChoices <= 10 && wrongNumChoices > 1) {
+//                 --wrongNumChoices;
+//                 msgEl.innerHTML = `Number of left Choice : ${wrongNumChoices}`;
+                
+//             } else {
+//                 for (let card of cards) {
+//                     card.matched = false;
+//                     msgEl.innerHTML = "Too Bad...Try Again";
+//                     wrongNumChoices = 0;
+//                     document.querySelector("main").removeEventListener("click", handleChoice);
+//                     LOSE_AUDIO.play();
+                    
+//                 }
+        
+//             }
+//         }
+        
+//         isMatched=cards.every(cardsOne=>cardsOne.matched);
+//         firstCard = null;
+//         winCondition();
+//     } else {
+//         firstCard = card;
+        
+//     };
+//     render();
+// }
+
+
 function handleChoice(evt) {
     const cardIdx = parseInt(evt.target.id);
     if (isNaN(cardIdx) || isNotFlipped) return;
     const card = cards[cardIdx];
-    if (firstCard) {
+     if (firstCard) {
         if (firstCard.img === card.img) {
             CORRECT_AUDIO.pause();
-            firstCard.matched = card.matched = true;
-            CORRECT_AUDIO.play();
+            if(isNotFlipped==true){
+               wrongNumChoices++;
+               return;
+            }else{
+                firstCard.matched = card.matched = true;
+                CORRECT_AUDIO.play();
+            }
         } else {
             
             if (wrongNumChoices <= 10 && wrongNumChoices > 1) {
@@ -143,6 +198,12 @@ function winCondition() {
   
 }
 
-
+function checkClickedTwice(){
+    if(this===previousTarget) {
+        alert("You've clicked this element twice.");
+    }
+    previousTarget=this;
+    return false;
+}
 
 
