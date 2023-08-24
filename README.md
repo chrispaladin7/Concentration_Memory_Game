@@ -8,12 +8,12 @@ It can also help to classify objects that are grouped by similar traits
 # Screenshot
 <details>
   <summary>Screenshot One</summary>
-	https://i.imgur.com/civrkV8.png
+	<img>https://i.imgur.com/civrkV8.png</img>
 </details>
 
 <details>
   <summary>Screenshot Two</summary>
-	https://i.imgur.com/PM3bifN.png
+	<img>https://i.imgur.com/PM3bifN.png</img>
 </details>
 
 # Technologies Used
