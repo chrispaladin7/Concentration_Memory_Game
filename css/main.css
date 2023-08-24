@@ -1,9 +1,7 @@
 * {
     box-sizing: border-box;
     white-space: nowrap;
-
 }
-
 
 img {
     max-width: 100%;
@@ -58,7 +56,6 @@ body {
 
 }
 
-
 main {
     display: flex;
     flex-wrap: wrap;
@@ -79,7 +76,6 @@ main {
     font-family: 'Open Sans', sans-serif, Bold;
     font-family: 'Public Sans', sans-serif,Bold;
 }
-
 
 .container {
     display: grid;

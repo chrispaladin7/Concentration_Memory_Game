@@ -1,4 +1,4 @@
-# <Your Project's Title>
+# Concentration Memory Game
 Concentration, also known as Memory, is a matching game that tests players' memory and concentration skills. 
 The goal is to remove all the cards from the board by matching them with other cards of the same kind.
 The concentration part comes in remembering where the images or words are.
