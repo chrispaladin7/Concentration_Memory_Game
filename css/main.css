@@ -13,7 +13,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
-    background: url("card-library/images/Concentration\ Memory.gif");
+    background: url("/images/Concentration\ Memory.gif");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -34,7 +34,6 @@ body {
     align-items: center;
     padding: 20px;
     width: 50%;
-
 }
 
 .right-container {
@@ -53,7 +52,6 @@ body {
     gap: 3vh;
     height: 90vh;
     width: 100vh;
-
 }
 
 main {
@@ -74,7 +72,7 @@ main {
     color: goldenrod;
     font-size: 4em;
     font-family: 'Open Sans', sans-serif, Bold;
-    font-family: 'Public Sans', sans-serif,Bold;
+    font-family: 'Public Sans', sans-serif, Bold;
 }
 
 .container {
@@ -92,7 +90,7 @@ main {
     justify-items: center;
     border-radius: 5%;
     border-color: aliceblue;
-    border-style:solid;
+    border-style: solid;
     border-width: 5%;
 }
 
@@ -121,16 +119,13 @@ main {
     justify-content: center;
     align-items: flex-end;
     text-align: center;
-
 }
 
 .container>button:hover {
-
     background-color: brown;
 }
 
 .container>button:active {
-
     background-color: black;
     color: white;
 }

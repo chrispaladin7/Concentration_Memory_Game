@@ -20,8 +20,7 @@ https://i.imgur.com/J97a5vL_d.jpg?maxwidth=520&shape=thumb&fidelity=high
 
 # Getting Started
 
-[Click to View Project Planning](your Trello url here)
-[Click to Play Connect Four!](your deployment url here)
+https://chrispaladin7.github.io/Concentration_Memory_Game/
 
 # Next Steps
 
