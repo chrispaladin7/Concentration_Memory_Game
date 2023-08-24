@@ -13,7 +13,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
-    background: url("/images/Concentration\ Memory.gif");
+    background-image: url("https://i.pinimg.com/originals/73/89/9e/73899e79c2ce1b7c766e18610e30955e.gif");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -66,10 +66,12 @@ main {
     display: flex;
     height: 5vh;
     width: 100vh;
+    text-shadow: violet 5px 1px 2px;
+    font-weight: bolder;
     text-align: center;
     justify-content: center;
     align-items: flex-end;
-    color: goldenrod;
+    color: black;
     font-size: 4em;
     font-family: 'Open Sans', sans-serif, Bold;
     font-family: 'Public Sans', sans-serif, Bold;
@@ -101,11 +103,11 @@ main {
 .container>button {
     display: grid;
     height: 5vh;
-    width: 20vh;
+    width: 30vh;
     text-align: center;
     justify-content: center;
     align-items: flex-end;
-    border-radius: 10%;
+    border-radius: 45%;
     margin: 0 auto;
     background-color: honeydew;
     font-size: 2em;
@@ -119,6 +121,10 @@ main {
     justify-content: center;
     align-items: flex-end;
     text-align: center;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    outline: none;
 }
 
 .container>button:hover {
