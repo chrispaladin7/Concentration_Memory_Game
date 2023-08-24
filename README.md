@@ -6,21 +6,28 @@ Memory games can improve concentration, train visual memory, increase short term
 It can also help to classify objects that are grouped by similar traits 
 
 # Screenshot
+<details>
+  <summary>Screenshot One</summary>
+	https://i.imgur.com/civrkV8.png
+</details>
 
-https://i.imgur.com/tkEDF7R_d.jpg?maxwidth=520&shape=thumb&fidelity=high
-
-https://i.imgur.com/J97a5vL_d.jpg?maxwidth=520&shape=thumb&fidelity=high
+<details>
+  <summary>Screenshot Two</summary>
+	https://i.imgur.com/PM3bifN.png
+</details>
 
 # Technologies Used
 
 - JavaScript
 - HTML
 - CSS
-- CardStarter CSS Library
 
 # Getting Started
 
-https://chrispaladin7.github.io/Concentration_Memory_Game/
+<details>
+  <summary>Working Link</summary>
+	https://chrispaladin7.github.io/Concentration_Memory_Game/
+</details>
 
 # Next Steps
 

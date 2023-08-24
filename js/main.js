@@ -12,8 +12,8 @@ const CARD_LOOKUP = [
     { img: "https://cdn11.bigcommerce.com/s-spem6oukby/images/stencil/80w/products/123/444/3C__99122__01407.1681313264.jpg?c=1", matched: false },
 
 ];
-
 const CARD_BACK = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqRrahdiAM-GMB5DXWUS1_-Bwj6V0CGL1K0N55gPpQvkpKZPMFQsyRXpSRFmF-0EvrhGE&usqp=CAU";
+
 /*----- state variables -----*/
 let cards;
 let firstCard;
@@ -57,7 +57,7 @@ function handleChoice(evt) {
                 firstCard = null;
                 ignoreClicks = false;
                 render();
-            }, 2000);
+            }, 1000);
         } else {
             firstCard.matched = card.matched = true;
             firstCard = null;
