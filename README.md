@@ -5,7 +5,7 @@ The concentration part comes in remembering where the images or words are.
 Memory games can improve concentration, train visual memory, increase short term memory, and increase attention to detail.
 It can also help to classify objects that are grouped by similar traits 
 
-# Screenshot
+# Screenshots
 <details>
   <summary>Screenshot One</summary>
 	<img src="https://i.imgur.com/civrkV8.png">
@@ -14,6 +14,11 @@ It can also help to classify objects that are grouped by similar traits
 <details>
   <summary>Screenshot Two</summary>
 	<img src="https://i.imgur.com/PM3bifN.png">
+</details>
+
+<details>
+  <summary>Screenshot Three</summary>
+	<img src="https://i.imgur.com/FNJ6eBx.png">
 </details>
 
 # Technologies Used
@@ -25,7 +30,7 @@ It can also help to classify objects that are grouped by similar traits
 # Getting Started
 
 <details>
-  <summary>Working Link</summary>
+  <summary>Click here to view working link</summary>
 	https://chrispaladin7.github.io/Concentration_Memory_Game/
 </details>
 
