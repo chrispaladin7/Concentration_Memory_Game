@@ -72,7 +72,7 @@ function handleChoice(evt) {
 
 function render() {
     if (winner === null) {
-        msgEl.innerHTML = `Number of left Choice : ${numRemaining}`;
+        msgEl.innerHTML = `Number of left Choices : ${numRemaining}`;
     } else if (winner) {
         msgEl.innerHTML = "Congratulations, You Win!";
         WIN_AUDIO.play();
